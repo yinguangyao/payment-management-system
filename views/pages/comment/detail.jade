@@ -1,0 +1,36 @@
+extends ../../include/layout
+
+block content
+	include ../../include/header
+	.container
+		.row
+			.col-md-2.col-md-offset-1
+				a.btn.back(href="#",style="font-size:18px") 返回
+		.row
+			.col-md-4.col-md-offset-4
+				h3 消费详细信息：
+				h4 名称：#{comment.list.name}
+				h4 金额：#{comment.list.amount}
+				h4 分类：#{category.name}
+				h4 收支：#{comment.list.type}
+				h4 具体内容：#{comment.list.content}
+				h4 日期：#{moment(comment.list.createAt).format('YYYY-MM-DD')}
+		.row
+			.col-md-4.col-md-offset-1
+				h3 具体问答：
+		.row
+			.col-md-6.col-md-offset-3
+				.media-list
+					.media
+						a(href="#").pull-left
+							img(src="/images/dog.png").media-object
+						.media-body
+							h4(style="margin:0;color:blue").media-heading #{comment.from.name}：
+							p #{comment.content}
+							each reply in comment.reply
+								.media
+									a(href="#").pull-left
+										img(src="/images/dog.png").media-object
+									.media-body
+										h4(style="margin:0;color:blue").media-heading #{reply.from.name}：
+										p #{reply.content}

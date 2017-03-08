@@ -1,0 +1,47 @@
+extends ../../include/layout
+
+block content
+  include ../../include/header
+  h1.center 分类
+  .container
+    each item in categorys
+      .row
+        #accordion.panel-group.col-md-5.col-md-offset-2
+          .panel.panel-default
+            .panel-heading
+              h4.panel-title
+                a(data-toggle="collapse", data-parent="#accordion", href="##{item._id}") #{item.name}
+            .panel-collapse.collapse.in(id="#{item._id}")
+              .panel-body #{item.description}
+        .category-btn.col-md-1
+            a.btn.btn-default(href="/category/list/#{item._id}") 查看详情  
+        if user&&user.role>10
+          .category-btn.col-md-1     
+            a.btn.btn-default(href="/category/delete/#{item._id}") 删除
+  if user&&user.role>10
+    a.add(data-toggle="modal",data-target="#add") 添加 
+      span.glyphicon.glyphicon-plus
+    #add.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+                    .modal-dialog
+                      .modal-content
+                        .modal-header
+                          button.close(type='button', data-dismiss='modal', aria-hidden='true')
+                            | ×
+                          h4#myModalLabel4.modal-title
+                            | 增加
+                        .modal-body
+                            form.form-horizontal(role="form")
+                                .form-group
+                                  label.col-sm-2.control-label 分类名
+                                  .col-sm-10
+                                    input.form-control.CategoryName(type='text', placeholder='请输入分类名')
+                                .form-group
+                                  label.col-sm-2.control-label 描述
+                                  .col-sm-10
+                                    textarea.form-control.CategoryDescription(row="3")
+                        .modal-footer
+                          button.btn.btn-default(type='button', data-dismiss='modal')
+                            | 关闭
+                          button.btn.btn-primary.addCategory(type='button')
+                            | 提交
+    

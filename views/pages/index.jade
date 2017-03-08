@@ -1,0 +1,17 @@
+extends ../include/layout
+
+block content
+  include ../include/header
+  .jumbotron
+    .container
+      h1 班费管理系统
+      br
+      p 这是一个很有爱的主页
+      br
+      p
+      if user
+        a.btn.btn-primary.btn-lg(role='button',href="/category")
+          | 查看
+      else
+        a.btn.btn-primary.btn-lg(role='button',href="/404")
+          | 登录后查看

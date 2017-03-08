@@ -1,0 +1,103 @@
+nav.navbar.navbar-inverse(role='navigation')
+			.container-fluid
+				.navbar-header
+					a.navbar-brand(href='/') 首页
+					if user
+						a.navbar-brand(href='/category') 分类
+					if user&&user.role>10
+						a.navbar-brand(href='/user/list') 用户
+					if user
+						a.navbar-brand(href='/list/all') 所有记录
+					if user&&user.role>10
+						a.navbar-brand(href="/comment/question/list") 提问
+					if user&&user.role<=10
+						a.navbar-brand(href="/comment/question/#{user._id}") 提问
+					button.navbar-toggle(type='button', data-toggle='collapse', data-target='#example-navbar-collapse')
+						span.sr-only 切换导航
+						span.icon-bar
+						span.icon-bar
+						span.icon-bar
+				#example-navbar-collapse.collapse.navbar-collapse
+					ul.nav.navbar-nav.navbar-right
+						if user
+							li 
+								a(href="/user/detail/#{user._id}") 欢迎你，#{user.name}
+							li
+								a(href='/user/logout') 退出
+						else
+							li(data-toggle='modal', data-target='#register')
+								a(href='#')
+									span.glyphicon.glyphicon-user
+									|  注册
+							li(data-toggle='modal', data-target='#login')
+								a(href='#')
+									span.glyphicon.glyphicon-log-in
+									|  登录
+		#register.modal.fade(tabindex='-1', role='dialog1', aria-labelledby='myModalLabel1', aria-hidden='true')
+			.modal-dialog
+				.modal-content
+					.modal-header
+						button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
+						h4#myModalLabel.modal-title 注册
+					.modal-body
+						form.form-horizontal(role='form')
+							.form-group
+								label.col-sm-2.control-label(for='firstname1') 名字
+								.col-sm-10
+									input#firstname1.form-control.registerName(type='text', placeholder='请输入名字')
+							.form-group
+								label.col-sm-2.control-label(for='studentId') 学号
+								.col-sm-10
+									input#studentId.form-control(type='text', placeholder='请输入学号')
+							.form-group
+								label.col-sm-2.control-label(for='password1') 密码
+								.col-sm-10
+									input#password1.form-control.registerPassword(type='password', placeholder='请输入密码')
+							.form-group
+								label.col-sm-2.control-label(for='comfirePassword') 确认密码
+								.col-sm-10
+									input#comfirePassword.form-control.confirmPassword(type='password', placeholder='请确认密码')
+							.form-group
+								label.col-sm-2.control-label 性别
+								.col-sm-10
+									label.radio-inline
+										input.userSex(type="radio",name="user[sex]",value="男")
+										| 男
+									label.radio-inline
+										input.userSex(type="radio",name="user[sex]",value="女")
+										| 女
+							.form-group
+								label.col-sm-2.control-label(for='class') 班级
+								.col-sm-10
+									input#class.form-control(type='text', placeholder='请输入班级')
+							.form-group
+								label.col-sm-2.control-label 身份
+								.col-sm-10
+									input#identity.form-control(type='text', placeholder='请输入身份')
+					.modal-footer
+						button.btn.btn-default(type='button', data-dismiss='modal') 关闭
+						button.btn.btn-primary.register(type='button') 注册
+				// /.modal-content
+			// /.modal
+		#login.modal.fade(tabindex='-1', role='dialog2', aria-labelledby='myModalLabel2', aria-hidden='true')
+			.modal-dialog
+				.modal-content
+					.modal-header
+						button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
+						h4#myModalLabel.modal-title 登录
+					.modal-body
+						form.form-horizontal(role='form')
+							.form-group
+								label.col-sm-2.control-label(for='firstname2') 名字
+								.col-sm-10
+									input#firstname2.form-control.loginName(type='text', placeholder='请输入名字')
+							br
+							.form-group
+								label.col-sm-2.control-label(for='password2') 密码
+								.col-sm-10
+									input#password2.form-control.loginPassword(type='password', placeholder='请输入密码')
+					.modal-footer
+						button.btn.btn-default(type='button', data-dismiss='modal') 关闭
+						button.btn.btn-primary.login(type='button') 登录
+				// /.modal-content
+			// /.modal

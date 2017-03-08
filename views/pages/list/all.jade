@@ -1,0 +1,60 @@
+extends ../../include/layout
+block content
+  include ../../include/header
+  .container
+    .row
+      .col-md-8.col-md-offset-2
+        if list.length>0
+          table.table.table-striped.table-hover
+            caption 所有记录
+            thead
+              tr
+                th 名称
+                th 分类
+                th 金额
+                th 收支
+                if user
+                  th 所有操作
+            tbody
+              - var income=0
+              - var cost=0
+              - var sum=0
+              each item in list
+                if item.type=="支出"
+                  - cost=cost+item.amount
+                else
+                  - income=income+item.amount
+                tr
+                  th #{item.name}
+                  th #{item.amount}
+                  th #{item.type}
+                  th #{item.category.name}
+                  th 
+                      a.btn(href="/category/list/view/#{item._id}") 查看
+                      if user&&user.role>10
+                        a.btn(href="/list/all/delete/#{item._id}") 删除
+                        a.btn(href="/category/list/modify/#{item._id}") 修改
+                      a.btn#QuestionAll(data-toggle='modal', data-target='#questionAllModal') 提问
+                      #questionAllModal.modal.fade(data-id="#{item._id}",tabindex='-1', role='dialog2', aria-labelledby='myAllQuestion', aria-hidden='true')
+                        .modal-dialog
+                          .modal-content
+                            .modal-header
+                              button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
+                              h4#myAllQuestion.modal-title 提问
+                            .modal-body
+                              form.form-horizontal
+                                .form-group
+                                  label.col-sm-1.control-label
+                                  .col-sm-10
+                                    input#questionAllId(type="hidden")
+                                    textarea.form-control#questionAllContent(row="5",name="list[question]",placeholder="请输入评论内容",style="min-height:150px;")
+                            .modal-footer
+                              button.btn.btn-default(type='button', data-dismiss='modal') 关闭
+                              button.btn.btn-primary.questionAll(type='button') 提交
+        else
+          h2.center 没有记录
+        if cost||income
+          - sum=income-cost
+          .sum 余额：#{sum}元
+        if user&&user.role>10
+          a.btn.add(href="/category/list/add/edit",style="marginTop:50px") 添加

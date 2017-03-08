@@ -1,0 +1,53 @@
+extends ../../include/layout
+
+block content
+	include ../../include/header
+	.container
+		.row
+			form.form-horizontal
+				.form-group
+					label.col-sm-3.control-label 名称
+					.col-sm-6
+						input#listName.form-control(type="text",value=list.name)
+				input#categoryId(type="hidden",name="list[_id]",value=list._id)
+				.form-group
+					label.col-sm-3.control-label 金额
+					.col-sm-6
+						input#listAmount.form-control(type="text",name="list[amount]",value=list.amount)
+				.form-group
+					label.col-sm-3.control-label 分类选择
+					.col-sm-6(style="height:50px; overflow:auto;")
+						each cat in categories
+							label.radio-inline
+								if list._id
+									input.listCategories(type="radio",name="list[category]",value=cat._id,checked=list.category.toString()==cat._id.toString())
+								else
+									input.listCategories(type="radio",name="list[category]",value=cat._id)
+								| #{cat.name}
+				.form-group
+					label.col-sm-3.control-label 收支选择
+					.col-sm-6(style="height:50px;overflow:auto;")
+						label.radio-inline
+							input.listType(type="radio",name="list[type]",value="收入",checked=list.type=="收入")
+							|	收入
+						label.radio-inline
+							input.listType(type="radio",name="list[type]",value="支出",checked=list.type=="支出")
+							|	支出
+				.form-group
+					label.col-sm-3.control-label 日期
+					.col-sm-6
+						if list._id
+							input#listDate.form-control(type="text",name="list[createAt]",value="#{moment(list.createAt).format('YYYY-MM-DD')}",placeholder="YYYY-MM-DD")
+						else
+							input#listDate.form-control(type="text",name="list[createAt]",placeholder="YYYY-MM-DD")
+				.form-group
+					label.col-sm-3.control-label 具体内容
+					.col-sm-6
+						textarea.form-control#listContent(row="3",name="list[content]",value=list.content) #{list.content}
+				.form-group
+					label.col-sm-3.control-label 上传收据
+					.col-sm-6
+						input(type="file",style="display:block;font-size:0;padding:10px")
+				.form-group
+					.col-sm-offset-3.col-sm-6
+						button.btn.btn-primary#editSubmit(type="submit") 提交

@@ -1,0 +1,23 @@
+extends ../../include/layout
+
+block content
+	include ../../include/header
+	.container
+		.row
+			form.form-horizontal
+				.form-group
+					label.col-sm-3.control-label 旧密码
+					.col-sm-6
+						input#oldPassword.form-control(type="password",placeholder="请输入旧密码")
+						input#userId.form-control(type="hidden",value="#{id}")
+				.form-group
+					label.col-sm-3.control-label 新密码
+					.col-sm-6
+						input#newPassword.form-control(type="password",placeholder="请输入新密码")
+				.form-group
+					label.col-sm-3.control-label 确认新密码
+					.col-sm-6
+						input#confirmNewPassword.form-control(type="password",placeholder="确认新密码")
+				.form-group
+					.col-sm-offset-3.col-sm-6
+						button.btn.btn-primary#editUserSubmit(type="submit") 提交

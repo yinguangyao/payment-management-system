@@ -1,0 +1,40 @@
+extends ../../include/layout
+block content
+	include ../../include/header
+	.container
+		.row
+			.col-md-8.col-md-offset-2
+				table.table.table-striped.table-hover
+					caption #{user.name}
+					thead
+						tr
+							th 用户名
+							th 提问内容
+							if user
+								th 所有操作
+					tbody
+						each comment in comments
+							tr
+								th #{comment.from.name}
+								th #{comment.content}
+								th 
+										a.btn(href="/comment/detail/#{comment._id}") 查看
+										if comment.reply.length>0
+											a.btn 已回复
+										else
+											a.btn(data-toggle='modal', data-target='#replyModal') 回复
+											#replyModal.modal.fade(data-id="#{comment._id}",data-from="#{user._id}",data-to="#{comment.from._id}",tabindex='-1', role='dialog2', aria-labelledby='myReply', aria-hidden='true')
+												.modal-dialog
+													.modal-content
+														.modal-header
+															button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
+															h4#myReply.modal-title 回复
+														.modal-body
+															form.form-horizontal
+															.form-group
+																label.col-sm-1.control-label
+																.col-sm-10
+																textarea.form-control#replyContent(row="5",name="reply[comment]",placeholder="请输入回复内容",style="min-height:150px;")
+														.modal-footer
+															button.btn.btn-default(type='button', data-dismiss='modal') 关闭
+															button.btn.btn-primary.reply(type='button') 提交

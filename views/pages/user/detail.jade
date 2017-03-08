@@ -1,0 +1,22 @@
+extends ../../include/layout
+
+block content
+	include ../../include/header
+	.container
+		.row
+			.col-md-3.col-md-offset-5
+				h1(style="margin:0px 0 40px;") 详细信息
+			.col-md-3.col-md-offset-5
+				h3 姓名：#{user.name}
+				h3 性别：#{user.sex}
+				h3 班级：#{user.class}
+				h3 身份：#{user.identity}
+			.col-md-3.col-md-offset-5
+				h4
+					a(href="/user/modify/#{user._id}") 修改密码
+				if user&&user.role>10
+					h4
+						a(href="/comment/question/list") 回答提问
+				else
+					h4
+						a(href="/comment/question/#{user._id}") 我的提问

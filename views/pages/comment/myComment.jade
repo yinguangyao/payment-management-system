@@ -1,0 +1,25 @@
+extends ../../include/layout
+block content
+	include ../../include/header
+	.container
+		.row
+			.col-md-8.col-md-offset-2
+					table.table.table-striped.table-hover
+						caption 我的所有提问
+						thead
+							tr
+								th 用户名
+								th 评论内容
+								if user
+									th 所有操作
+						tbody
+							each comment in comments
+								tr
+									th #{user.name}
+									th #{comment.content}
+									th 
+										a.btn(href="/comment/detail/#{comment._id}") 查看
+										if comment.reply.length>0
+											a.btn 已被回复
+										else
+											a.btn 待回复

@@ -1,0 +1,35 @@
+extends ../../include/layout
+
+block content
+	include ../../include/header
+	.container
+		.row
+			.col-md-8.col-md-offset-2
+				table.table.table-striped.table-hover
+					caption 用户列表
+					thead
+						tr
+							th 用户名
+							th 性别
+							th 用户级别
+							th 操作
+					tbody
+						each item in users
+							tr
+								td #{item.name}
+								td #{item.sex}
+								if item.role>10&&item.role<100
+									td 管理员
+								else if item.role<=10
+									td 普通用户
+								else
+									td 超级管理员
+								td
+									if item.role>10&&user.role<100||item.role>=100
+										a.btn 没有权限操作
+									else
+										a(href="/user/delete/#{item._id}").btn 删除
+									if item.role<10&&user.role>=100
+										a(href="/user/addAdmin/#{item._id}").btn 设为管理员
+									else if item.role>10&&user.role>=100&&item.role<100
+										a(href="/user/removeAdmin/#{item._id}").btn 取消管理员

@@ -84,6 +84,10 @@ exports.logout=function(req,res){
 exports.register=function(req,res){
 	var name=req.body.name;
 	var data=req.body;
+	if(name==''){
+        res.redirect("/");
+        return;
+    }
 	User.findOne({name:name},function(err,user){
 		if(err){console.log(err)}
 		if(user){
@@ -102,6 +106,10 @@ exports.register=function(req,res){
 exports.login=function(req,res){
 	var name=req.body.name;
 	var password=req.body.password;
+    if(name==''){
+        res.redirect("/");
+        return;
+    }
 	User.findOne({name:name},function(err,user){ //查询有木有用户
 		if(err){console.log(err);}
 		if(!user){
@@ -109,6 +117,7 @@ exports.login=function(req,res){
 		}else{
     	if(user.password==password){
 			req.session.user=user;
+			delete req.session.user.password;
 			res.send({message:"登录成功"});
 		}else{
 			res.send({message:"密码错误"})

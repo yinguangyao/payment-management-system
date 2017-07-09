@@ -7,7 +7,8 @@ $(function(){
 		$this.attr("disabled","true");
 		if($name==""||$password==""){
 			alert("用户名或密码不能为空");
-			$this.removeAttr("disabled")
+			$this.removeAttr("disabled");
+			return;
 		}
 		$.ajax({
 			url:"/user/login",
@@ -41,11 +42,13 @@ $(function(){
 		$this.attr("disabled","true");
 		if($name==""||$password==""||$confirmPassword==""||$sex==""||$class==""||$identity==""||$studentId==""){
 			alert("任何一项都不能为空");
-			$this.removeAttr("disabled")
+			$this.removeAttr("disabled");
+			return;
 		}
 		if($password!=$confirmPassword){
 			alert("前后密码输入不一致");
 			$this.removeAttr("disabled");
+			return;
 		}
 		$.ajax({
 			url:"/user/register",

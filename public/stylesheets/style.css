@@ -1,18 +1,18 @@
-*{
+* {
 	margin: 0;
 	padding: 0;
 }
 a {
   color: #00B7FF;
 }
-html,body{
+html, body {
 	height: 100%;
 }
-.navbar{
+.navbar {
 	margin-bottom: 0px!important;
 	border-radius: 0px!important;
 }
-.jumbotron{
+.jumbotron {
 	background: -webkit-linear-gradient(bottom left, #020031 0%, #6d3353 80%);
 	background: -o-linear-gradient(bottom left, #020031 0%, #6d3353 80%);
 	background: linear-gradient(to top right, #020031 0%, #6d3353 80%);
@@ -20,67 +20,67 @@ html,body{
     color: white;
     text-align: center;
     height: 100%;
-    padding:200px 50px 50px 50px;
+    padding: 200px 50px 50px 50px;
 }
-caption{
-	margin:30px auto;
+caption {
+	margin: 30px auto;
 	text-align: center;
 }
-.table{
-	width:70%;
+.table {
+	width: 70%;
 	margin: 0 auto;
 }
-.table th,.table td{
-		text-align:center!important;
+.table th, .table td {
+		text-align: center!important;
 }
-.totel{
-	margin:50px 30px;
+.totel {
+	margin: 50px 30px;
 	text-align: center;
 }
-.add{
+.add {
 	display: block;
 	font-size: 16px;
 	text-align: center;
 }
-.center{
+.center {
 	text-align: center;
 }
-h4{
-	margin:20px 10px;
+h4 {
+	margin: 20px 10px;
 }
-.sum{
-	font-size:20px;
+.sum {
+	font-size: 20px;
 	font-weight: bold;
 	width: 200px;
-	margin:20px auto;
+	margin: 20px auto;
 	text-align: center;
 }
-.cost,.income{
+.cost, .income {
 	display: inline-block;
 	width: 150px;
-	margin-right:50px;
+	margin-right: 50px;
 	margin-top: 50px;
 	color: gray;
 	text-align: center;
 }
-.accounts{
+.accounts {
 	width: 410px;
 	margin: 0 auto;
 }
-.container{
+.container {
 	margin-top: 50px;
 }
-.category-btn{
-	padding:0 5px;
+.category-btn {
+	padding: 0 5px;
 }
-.col-md-6{
-	word-wrap:break-word;
+.col-md-6 {
+	word-wrap: break-word;
 }
-.comment{
+.comment {
 	margin-bottom: 20px;
 	color: gray;
 }
-.media-list{
+.media-list {
 	padding: 25px 0;
 	border-bottom: 1px solid gray;
 }
